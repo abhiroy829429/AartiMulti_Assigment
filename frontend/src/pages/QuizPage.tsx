@@ -1,9 +1,9 @@
 import { useEffect, useRef, useState } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
-import { API_URL } from '../service/api';
 import Button from '../components/Button';
 import Navbar from '../components/Navbar';
 import QuestionCard from '../components/QuestionCard';
+import { API_URL } from '../service/api';
 
 const QUESTION_TIME = 20; // seconds
 
@@ -21,6 +21,7 @@ const QuizPage = () => {
 
   useEffect(() => {
     setLoading(true);
+    console.log(API_URL);
     fetch(`${API_URL}/questions/${category}`)
       .then((res) => res.json())
       .then((data) => {
