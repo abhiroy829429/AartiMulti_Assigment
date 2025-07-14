@@ -19,7 +19,7 @@ A full-stack quiz application with a modern, colorful UI. Built with React, Type
 ### 1. Clone the Repository
 
 ```bash
-git clone <https://github.com/abhiroy829429/AartiMulti_Assigment.git>
+git clone https://github.com/abhiroy829429/AartiMulti_Assigment.git
 cd aartimulti_services_assignment
 ```
 
