@@ -2,9 +2,11 @@ const express = require('express');
 const mongoose = require('mongoose');
 const cors = require('cors');
 const dotenv = require('dotenv');
+const path = require('path');
 
 const PORT = process.env.PORT || 5001;
-const MONGO_URI = process.env.MONGO_URI || 'mongodb://localhost:27017/quizapp';
+const _dirname = path.resolve();
+const MONGO_URI = process.env.MONGO_URI || 'mongodb+srv://abhiroy829429:QD3fYCOSxlAfUrlx@cluster0.h57dczo.mongodb.net/quizapp?retryWrites=true&w=majority&appName=Cluster0';
 
 dotenv.config();
 
@@ -29,7 +31,13 @@ app.use('/api/auth', authRoutes);
 app.use('/api', questionRoutes);
 app.use('/api', scoreRoutes);
 
+if(process.env.NODE_ENV==="production"){
+  app.use(express.static(path.join(__dirname, "../frontend/dist")));
 
+  app.get("*",(req, res) =>{
+   res.sendFile(path.join(__dirname, "..frontend", "dist", "index.html"))
+  })
+}
 
 
 mongoose.connect(MONGO_URI)

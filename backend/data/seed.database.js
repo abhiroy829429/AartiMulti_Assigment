@@ -1,0 +1,249 @@
+// const dotenv = require('dotenv');
+// dotenv();
+const Question = require('../models/Question');
+const mongoose = require('mongoose');
+MONGO_URI = 'mongodb+srv://abhiroy829429:QD3fYCOSxlAfUrlx@cluster0.h57dczo.mongodb.net/quizapp?retryWrites=true&w=majority&appName=Cluster0'
+
+
+
+const data = [
+    {
+      "category": "HTML",
+      "question": "What does HTML stand for?",
+      "options": [
+        "Hyper Text Markup Language",
+        "Home Tool Markup Language",
+        "Hyperlinks and Text Markup Language",
+        "Hyperlinking Text Marking Language"
+      ],
+      "correctAnswer": "Hyper Text Markup Language",
+      "explanation": "HTML stands for Hyper Text Markup Language."
+    },
+    {
+      "category": "HTML",
+      "question": "Which HTML element is used to define the title of a document?",
+      "options": [
+        "<meta>",
+        "<head>",
+        "<title>",
+        "<h1>"
+      ],
+      "correctAnswer": "<title>",
+      "explanation": "The <title> tag is used inside the <head> section to define the document's title, which appears on the browser tab."
+    },
+    {
+      "category": "HTML",
+      "question": "Which tag is used to create a hyperlink in HTML?",
+      "options": [
+        "<a>",
+        "<link>",
+        "<href>",
+        "<hyperlink>"
+      ],
+      "correctAnswer": "<a>",
+      "explanation": "The <a> tag (anchor tag) is used to create hyperlinks in HTML documents."
+    },
+    {
+      "category": "HTML",
+      "question": "What is the correct HTML element for inserting a line break?",
+      "options": [
+        "<break>",
+        "<lb>",
+        "<br>",
+        "<line>"
+      ],
+      "correctAnswer": "<br>",
+      "explanation": "The <br> tag is used to insert a line break in the text."
+    },
+    {
+      "category": "HTML",
+      "question": "Which attribute is used to provide alternative text for an image in HTML?",
+      "options": [
+        "title",
+        "src",
+        "alt",
+        "href"
+      ],
+      "correctAnswer": "alt",
+      "explanation": "The 'alt' attribute specifies alternative text to display when an image cannot be shown."
+    },
+    {
+      "category": "CSS",
+      "question": "What does CSS stand for?",
+      "options": [
+        "Cascading Style Sheets",
+        "Colorful Style Sheets",
+        "Computer Style Sheets",
+        "Creative Style Sheets"
+      ],
+      "correctAnswer": "Cascading Style Sheets",
+      "explanation": "CSS stands for Cascading Style Sheets."
+    },
+    {
+      "category": "CSS",
+      "question": "Which property is used to change the background color?",
+      "options": [
+        "color",
+        "background-color",
+        "bgcolor",
+        "backgroundStyle"
+      ],
+      "correctAnswer": "background-color",
+      "explanation": "The background-color property sets the background color of an element."
+    },
+    {
+      "category": "CSS",
+      "question": "How do you select an element with id 'header'?",
+      "options": [
+        "#header",
+        ".header",
+        "header",
+        "*header"
+      ],
+      "correctAnswer": "#header",
+      "explanation": "#header selects the element with id='header'."
+    },
+    {
+      "category": "CSS",
+      "question": "Which CSS property controls the text size?",
+      "options": [
+        "font-style",
+        "text-size",
+        "font-size",
+        "text-style"
+      ],
+      "correctAnswer": "font-size",
+      "explanation": "The font-size property sets the size of the text."
+    },
+    {
+      "category": "CSS",
+      "question": "Which value of position property makes an element stay in the same place even if the page is scrolled?",
+      "options": [
+        "fixed",
+        "absolute",
+        "relative",
+        "static"
+      ],
+      "correctAnswer": "fixed",
+      "explanation": "position: fixed keeps the element in the same place even when the page is scrolled."
+    },
+    {
+      "category": "JavaScript",
+      "question": "Which company developed JavaScript?",
+      "options": ["Mozilla", "Netscape", "Microsoft", "Sun Microsystems"],
+      "correctAnswer": "Netscape",
+      "explanation": "JavaScript was developed by Netscape."
+    },
+    {
+      "category": "JavaScript",
+      "question": "Which keyword is used to declare a variable in JavaScript?",
+      "options": ["var", "let", "const", "All of the above"],
+      "correctAnswer": "All of the above",
+      "explanation": "You can declare variables using var, let, or const."
+    },
+    {
+      "category": "JavaScript",
+      "question": "What is the output of 'console.log(typeof null)'?",
+      "options": ["object", "null", "undefined", "number"],
+      "correctAnswer": "object",
+      "explanation": "typeof null returns 'object' due to a historical bug in JavaScript."
+    },
+    {
+      "category": "JavaScript",
+      "question": "Which method is used to parse a JSON string in JavaScript?",
+      "options": ["JSON.parse()", "JSON.stringify()", "parseJSON()", "toJSON()"],
+      "correctAnswer": "JSON.parse()",
+      "explanation": "JSON.parse() parses a JSON string into a JavaScript object."
+    },
+    {
+      "category": "JavaScript",
+      "question": "Which symbol is used for single-line comments in JavaScript?",
+      "options": ["//", "<!-- -->", "/* */", "#"],
+      "correctAnswer": "//",
+      "explanation": "// is used for single-line comments in JavaScript."
+    },
+    {
+      "category": "Git",
+      "question": "Which command is used to check the status of your Git repository?",
+      "options": ["git status", "git check", "git log", "git show"],
+      "correctAnswer": "git status",
+      "explanation": "'git status' shows the working tree status."
+    },
+    {
+      "category": "Git",
+      "question": "Which command is used to create a new branch in Git?",
+      "options": ["git branch", "git checkout", "git init", "git merge"],
+      "correctAnswer": "git branch",
+      "explanation": "'git branch' creates a new branch."
+    },
+    {
+      "category": "Git",
+      "question": "Which command is used to stage changes for commit?",
+      "options": ["git add", "git stage", "git commit", "git push"],
+      "correctAnswer": "git add",
+      "explanation": "'git add' stages changes for commit."
+    },
+    {
+      "category": "Git",
+      "question": "Which file is used to ignore files and directories in Git?",
+      "options": [".gitignore", ".gitconfig", ".ignore", "ignore.txt"],
+      "correctAnswer": ".gitignore",
+      "explanation": ".gitignore is used to specify files and directories to be ignored by Git."
+    },
+    {
+      "category": "Git",
+      "question": "Which command uploads local repository content to a remote repository?",
+      "options": ["git push", "git upload", "git send", "git commit"],
+      "correctAnswer": "git push",
+      "explanation": "'git push' uploads local repository content to a remote repository."
+    },
+    {
+      "category": "React",
+      "question": "What is the command to create a new React app using Create React App?",
+      "options": ["npx create-react-app my-app", "npm install react", "react-new-app", "npm create react-app"],
+      "correctAnswer": "npx create-react-app my-app",
+      "explanation": "'npx create-react-app my-app' creates a new React app."
+    },
+    {
+      "category": "React",
+      "question": "What hook is used to manage state in a functional component?",
+      "options": ["useState", "useEffect", "useContext", "useReducer"],
+      "correctAnswer": "useState",
+      "explanation": "useState is the hook for managing state in functional components."
+    },
+    {
+      "category": "React",
+      "question": "Which method is used to render React content to the DOM?",
+      "options": ["ReactDOM.render()", "render()", "React.render()", "DOM.render()"],
+      "correctAnswer": "ReactDOM.render()",
+      "explanation": "ReactDOM.render() is used to render React elements to the DOM."
+    },
+    {
+      "category": "React",
+      "question": "What is the default file extension for a React component written in TypeScript?",
+      "options": [".tsx", ".jsx", ".js", ".ts"],
+      "correctAnswer": ".tsx",
+      "explanation": ".tsx is used for React components in TypeScript."
+    },
+    {
+      "category": "React",
+      "question": "Which hook is used for side effects in React?",
+      "options": ["useEffect", "useState", "useMemo", "useCallback"],
+      "correctAnswer": "useEffect",
+      "explanation": "useEffect is used for side effects in React components."
+    }
+  ];
+
+const seedData = async () =>{
+    try{
+        await mongoose.connect(MONGO_URI);
+        await Question.insertMany(data);
+        console.log("data pushed");
+    }catch{
+        console.log("pusing data error")
+    }
+}
+
+seedData();
+
+  
