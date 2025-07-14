@@ -5,7 +5,7 @@ const dotenv = require('dotenv');
 const path = require('path');
 
 const PORT = process.env.PORT || 5001;
-const _dirname = path.resolve();
+const __dirname = path.resolve();
 const MONGO_URI = process.env.MONGO_URI || 'mongodb+srv://abhiroy829429:QD3fYCOSxlAfUrlx@cluster0.h57dczo.mongodb.net/quizapp?retryWrites=true&w=majority&appName=Cluster0';
 
 dotenv.config();
