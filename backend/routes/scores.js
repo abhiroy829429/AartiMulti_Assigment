@@ -5,12 +5,14 @@ const User = require('../models/User');
 
 const router = express.Router();
 
+const JWT_SECRET = "MyVery$trongSecretKey!2024"
+
 // Middleware to verify JWT
 function auth(req, res, next) {
   const token = req.headers['authorization'];
   if (!token) return res.status(401).json({ message: 'No token provided' });
   try {
-    const decoded = jwt.verify(token, process.env.JWT_SECRET);
+    const decoded = jwt.verify(token, JWT_SECRET);
     req.userId = decoded.userId;
     next();
   } catch (err) {

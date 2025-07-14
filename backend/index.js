@@ -8,8 +8,8 @@ const authRoutes = require('./routes/auth');
 const questionRoutes = require('./routes/questions');
 const scoreRoutes = require('./routes/scores');
 
-const PORT = process.env.PORT || 5001;
-const MONGO_URI = process.env.MONGO_URI || 'mongodb+srv://abhiroy829429:QD3fYCOSxlAfUrlx@cluster0.h57dczo.mongodb.net/quizapp?retryWrites=true&w=majority&appName=Cluster0';
+const PORT = 5001;
+const MONGO_URI = 'mongodb+srv://abhiroy829429:QD3fYCOSxlAfUrlx@cluster0.h57dczo.mongodb.net/quizapp?retryWrites=true&w=majority&appName=Cluster0';
 
 dotenv.config();
 
