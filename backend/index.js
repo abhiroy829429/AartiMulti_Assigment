@@ -9,7 +9,6 @@ const questionRoutes = require('./routes/questions');
 const scoreRoutes = require('./routes/scores');
 
 const PORT = process.env.PORT || 5001;
-// const __dirname = path.resolve();
 const MONGO_URI = process.env.MONGO_URI || 'mongodb+srv://abhiroy829429:QD3fYCOSxlAfUrlx@cluster0.h57dczo.mongodb.net/quizapp?retryWrites=true&w=majority&appName=Cluster0';
 
 dotenv.config();
@@ -22,16 +21,10 @@ app.use(cors({
 }));
 
 
-// app.get('/', (req, res) => {
-//   res.send('Quiz Generator API is running');
-
-// });
-
-
 app.use('/api/auth', authRoutes);
 app.use('/api', questionRoutes);
 app.use('/api', scoreRoutes);
-console.log(process.env.NODE_ENV);
+
 if(process.env.NODE_ENV === "production"){
   app.use(express.static(path.join(__dirname, "../frontend/dist")));
 
