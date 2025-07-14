@@ -1,91 +1,93 @@
-# React + TypeScript + Tailwind CSS
+# Quiz App
 
-A modern React application built with TypeScript and styled with Tailwind CSS, using Vite for fast development and building.
+A full-stack quiz application with a modern, colorful UI. Built with React, TypeScript, Tailwind CSS (frontend), and Node.js, Express, MongoDB (backend).
 
-## 🚀 Features
+---
 
-- **React 18** with latest features
-- **TypeScript** for type safety
-- **Tailwind CSS** for rapid UI development
-- **Vite** for lightning-fast development server
-- **Hot Module Replacement (HMR)** for instant updates
-- **ESLint** for code quality
-- **Modern UI** with beautiful gradients and animations
+## Features
 
-## 🛠️ Tech Stack
+- User authentication (login/register)
+- Take quizzes by category
+- Instant results and answer review
+- Leaderboard
+- Beautiful, responsive UI
 
-- [React](https://react.dev/) - UI library
-- [TypeScript](https://www.typescriptlang.org/) - Type safety
-- [Tailwind CSS](https://tailwindcss.com/) - Utility-first CSS framework
-- [Vite](https://vitejs.dev/) - Build tool and dev server
+---
 
-## 📦 Installation
+## Getting Started
+
+### 1. Clone the Repository
 
 ```bash
-npm install
+git clone <your-repo-url>
+cd aartimulti_services_assignment
 ```
 
-## 🚀 Development
+---
 
-Start the development server:
+### 2. Setup the Backend
 
-```bash
-npm run dev
+1. Go to the backend folder:
+   ```bash
+   cd backend
+   ```
+2. Install dependencies:
+   ```bash
+   npm install
+   ```
+3. Set up your MongoDB connection in `.env` (or use the default in `index.js`).
+4. (Optional) Seed the database with sample questions:
+   ```bash
+   node data/seed.js
+   ```
+5. Start the backend server:
+   ```bash
+   npm start
+   ```
+   The backend runs on [http://localhost:5001](http://localhost:5001).
+
+---
+
+### 3. Setup the Frontend
+
+1. Open a new terminal and go to the frontend folder:
+   ```bash
+   cd frontend
+   ```
+2. Install dependencies:
+   ```bash
+   npm install
+   ```
+3. Start the frontend dev server:
+   ```bash
+   npm run dev
+   ```
+   The frontend runs on [http://localhost:5173](http://localhost:5173).
+
+---
+
+## Usage
+
+- Register or log in.
+- Choose a quiz category and answer questions.
+- See your results, review answers, and check the leaderboard.
+
+---
+
+## Project Structure
+
+```
+backend/    # Express API, MongoDB models, routes
+frontend/   # React app, UI components, services
 ```
 
-The application will be available at `http://localhost:5173`
+---
 
-## 🏗️ Build
+## Notes
 
-Build for production:
+- Make sure MongoDB is running and accessible.
+- The API base URL is set to `http://localhost:5001/api` in the frontend services.
+- For any issues, check your terminal for error messages.
 
-```bash
-npm run build
-```
+---
 
-Preview the production build:
-
-```bash
-npm run preview
-```
-
-## 📁 Project Structure
-
-```
-src/
-├── App.tsx          # Main application component
-├── main.tsx         # Application entry point
-├── index.css        # Global styles with Tailwind directives
-└── assets/          # Static assets
-```
-
-## 🎨 Styling
-
-This project uses Tailwind CSS for styling. The configuration is in `tailwind.config.js` and includes:
-
-- Custom animations (like the React logo spin)
-- Responsive design utilities
-- Modern color palette
-- Beautiful gradients and shadows
-
-## 🔧 Configuration Files
-
-- `tailwind.config.js` - Tailwind CSS configuration
-- `postcss.config.js` - PostCSS configuration
-- `tsconfig.json` - TypeScript configuration
-- `vite.config.ts` - Vite configuration
-
-## 📝 Available Scripts
-
-- `npm run dev` - Start development server
-- `npm run build` - Build for production
-- `npm run preview` - Preview production build
-- `npm run lint` - Run ESLint
-
-## 🎯 Next Steps
-
-- Add more components
-- Implement routing with React Router
-- Add state management (Redux, Zustand, etc.)
-- Set up testing with Vitest
-- Add more Tailwind components and utilities
