@@ -18,10 +18,10 @@ app.use(cors({
 }));
 
 
-app.get('/', (req, res) => {
-  res.send('Quiz Generator API is running');
+// app.get('/', (req, res) => {
+//   res.send('Quiz Generator API is running');
 
-});
+// });
 
 const authRoutes = require('./routes/auth');
 const questionRoutes = require('./routes/questions');
