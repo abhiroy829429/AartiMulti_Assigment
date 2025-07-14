@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
-import { API_URL } from '../api';
+import { API_URL } from '../service/api';
 import Button from '../components/Button';
 import Navbar from '../components/Navbar';
 

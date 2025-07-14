@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { API_URL } from '../api';
+import { API_URL } from '../service/api';
 import Button from '../components/Button';
 import Navbar from '../components/Navbar';
 

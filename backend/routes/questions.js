@@ -16,15 +16,17 @@ router.get('/categories', async (req, res) => {
 // Get randomized questions by category
 router.get('/questions/:category', async (req, res) => {
   const { category } = req.params;
+  console.log('Requested category:', category);
   try {
     const questions = await Question.aggregate([
       { $match: { category } },
       { $sample: { size: 10 } },
     ]);
-    
+    console.log('Questions found:', questions.length);
     res.json(questions);
   } catch (err) {
-    res.status(500).json({ message: 'Server error' });
+    console.error('Error fetching questions:', err);
+    res.status(500).json({ message: 'Server error', error: err.message });
   }
 });
 

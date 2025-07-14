@@ -4,7 +4,7 @@
   "description": "A modern React application built with TypeScript and styled with Tailwind CSS, using Vite for fast development and building.",
   "main": "index.js",
   "scripts": {
-    "build":"npm install --prefix backend && pm install --prefix frontend && npm run build --prefix frontend",
+    "build":"npm install --prefix backend && npm install --prefix frontend && npm run build --prefix frontend",
     "start":"npm run start --prefix backend"
   },
   "repository": {
