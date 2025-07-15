@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
-import { API_URL } from '../service/api';
 import Button from '../components/Button';
 import Navbar from '../components/Navbar';
+import { API_URL } from '../service/api';
 
 const LoginPage = () => {
   const [isRegister, setIsRegister] = useState(false);
@@ -34,7 +34,12 @@ const LoginPage = () => {
         localStorage.setItem('token', data.token);
         localStorage.setItem('user', JSON.stringify({ name: data.name, email: data.email }));
         setSuccess('Login successful!');
-        window.location.href = '/';
+        if (localStorage.getItem('loginToTrack')) {
+          localStorage.removeItem('loginToTrack');
+          window.location.href = '/leaderboard';
+        } else {
+          window.location.href = '/';
+        }
       }
     } catch (err: any) {
       setError(err.message);

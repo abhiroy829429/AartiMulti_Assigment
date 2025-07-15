@@ -1,8 +1,8 @@
 import { useEffect, useState } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
-import { API_URL } from '../service/api';
 import Button from '../components/Button';
 import Navbar from '../components/Navbar';
+import { API_URL } from '../service/api';
 
 const ResultPage = () => {
   const location = useLocation();
@@ -46,6 +46,8 @@ const ResultPage = () => {
   }
 
   const percentage = Math.round((score / total) * 100);
+  const unattempted = selected.filter((ans: string | null) => !ans).length;
+  const incorrect = questions.length - score - unattempted;
 
   // Circular progress SVG
   const radius = 40;
@@ -73,7 +75,13 @@ const ResultPage = () => {
               <span className="inline-block w-5 h-5 text-red-600">{/* cross icon */}
                 <svg fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" /></svg>
               </span>
-              <span>Total Incorrect: <span className="text-red-600 font-bold">{total - score}</span></span>
+              <span>Total Incorrect: <span className="text-red-600 font-bold">{incorrect}</span></span>
+            </div>
+            <div className="flex items-center gap-2">
+              <span className="inline-block w-5 h-5 text-yellow-500">{/* unattempted icon */}
+                <svg fill="none" viewBox="0 0 24 24" stroke="currentColor"><circle cx="12" cy="12" r="10" strokeWidth={2} /><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 12h4m4 0h-4v4" /></svg>
+              </span>
+              <span>Unattempted: <span className="text-yellow-600 font-bold">{unattempted}</span></span>
             </div>
           </div>
           <div className="flex flex-col items-center">
@@ -114,17 +122,26 @@ const ResultPage = () => {
         <div className="space-y-4">
           {questions.map((q: any, idx: number) => {
             const isCorrect = selected[idx] === q.correctAnswer;
+            const isUnattempted = !selected[idx];
             return (
-              <div key={idx} className={`p-4 rounded-xl border flex flex-col md:flex-row md:items-center bg-gray-50 ${isCorrect ? 'border-green-200' : 'border-red-200'}`}>
+              <div key={idx} className={`p-4 rounded-xl border flex flex-col md:flex-row md:items-center bg-gray-50 ${isUnattempted ? 'border-yellow-200' : isCorrect ? 'border-green-200' : 'border-red-200'}`}>
                 <div className="flex-1">
                   <div className="font-medium mb-1">Q{idx + 1}: {q.question}</div>
                   <div className="flex items-center gap-2">
-                    <span className={`inline-block w-5 h-5 ${isCorrect ? 'text-green-600' : 'text-red-600'}`}>{isCorrect ? (
-                      <svg fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" /></svg>
+                    {isUnattempted ? (
+                      <span className="inline-block w-5 h-5 text-yellow-500">
+                        <svg fill="none" viewBox="0 0 24 24" stroke="currentColor"><circle cx="12" cy="12" r="10" strokeWidth={2} /><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 12h4m4 0h-4v4" /></svg>
+                      </span>
+                    ) : isCorrect ? (
+                      <span className="inline-block w-5 h-5 text-green-600">
+                        <svg fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" /></svg>
+                      </span>
                     ) : (
-                      <svg fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" /></svg>
-                    )}</span>
-                    <span>Your answer: <span className={isCorrect ? 'text-green-600' : 'text-red-600'}>{selected[idx] || 'No answer'}</span></span>
+                      <span className="inline-block w-5 h-5 text-red-600">
+                        <svg fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" /></svg>
+                      </span>
+                    )}
+                    <span>Your answer: <span className={isUnattempted ? 'text-yellow-600' : isCorrect ? 'text-green-600' : 'text-red-600'}>{isUnattempted ? 'Unattempted' : selected[idx]}</span></span>
                   </div>
                   <div>Correct answer: <span className="text-green-700 font-semibold">{q.correctAnswer}</span></div>
                   {q.explanation && <div className="text-gray-600 text-sm mt-1">Explanation: {q.explanation}</div>}

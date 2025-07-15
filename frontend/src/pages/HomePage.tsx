@@ -13,11 +13,13 @@ const categories = [
 
 const HomePage = () => {
   const navigate = useNavigate();
+  const user = JSON.parse(localStorage.getItem('user') || 'null');
   const handleCategoryClick = (category: string) => {
     navigate('/quiz', { state: { category } });
   };
 
   const handleLogin = () => {
+    localStorage.setItem('loginToTrack', 'true');
     navigate('/login');
   };
 
@@ -31,7 +33,9 @@ const HomePage = () => {
             <CategoryCard key={cat} name={cat} onClick={() => handleCategoryClick(cat)} />
           ))}
         </div>
-        <Button onClick={handleLogin} className="w-full mt-2">Login to track your scores</Button>
+        {!user && (
+          <Button onClick={handleLogin} className="w-full mt-2">Login to track your scores</Button>
+        )}
       </div>
     </div>
   );

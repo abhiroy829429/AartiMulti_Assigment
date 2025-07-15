@@ -68,6 +68,9 @@ const QuizPage = () => {
   const handlePrev = () => {
     setCurrent((c) => Math.max(c - 1, 0));
   };
+  const handleSkip = () => {
+    setCurrent((c) => Math.min(c + 1, questions.length - 1));
+  };
 
   const handleSubmit = () => {
     if (timerRef.current) clearInterval(timerRef.current);
@@ -104,9 +107,16 @@ const QuizPage = () => {
           selectedOption={selected[current]}
           onSelect={handleSelect}
         />
-        <div className="flex justify-between mt-4">
-          <Button onClick={handlePrev} className="" disabled={current === 0}>Previous</Button>
-          <Button onClick={handleNext} className="" disabled={current === questions.length - 1}>Next</Button>
+        <div className="flex justify-between mt-4 gap-2">
+          <Button onClick={handlePrev} className="flex items-center gap-1" disabled={current === 0}>
+            <span className="text-lg">&#8592;</span> Previous
+          </Button>
+          <Button onClick={handleSkip} className="flex items-center gap-1" disabled={current === questions.length - 1}>
+            <span className="text-lg">⏭️</span> Skip
+          </Button>
+          <Button onClick={handleNext} className="flex items-center gap-1" disabled={current === questions.length - 1}>
+            Next <span className="text-lg">&#8594;</span>
+          </Button>
         </div>
         <div className="mt-6 text-right">
           <Button onClick={handleSubmit}>Submit Quiz</Button>

@@ -4,6 +4,10 @@ A full-stack quiz application with a modern, colorful UI. Built with React, Type
 
 ---
 
+##  [Live Demo](https://aartimulti-assigment.onrender.com/)
+
+---
+
 ## Features
 
 - User authentication (login/register)
@@ -11,6 +15,19 @@ A full-stack quiz application with a modern, colorful UI. Built with React, Type
 - Instant results and answer review
 - Leaderboard
 - Beautiful, responsive UI
+
+---
+
+## Screenshots
+
+### Home Page
+![Home](frontend/src/assets/Home.png)
+
+### Leaderboard
+![Leaderboard](frontend/src/assets/Leaderboard.png)
+
+### Result Page
+![Result](frontend/src/assets/Result.png)
 
 ---
 
