@@ -86,7 +86,7 @@ const ResultPage = () => {
           </div>
           <div className="flex flex-col items-center">
             <div className="relative w-24 h-24">
-              <svg height={radius * 2} width={radius * 2} className="block">
+              <svg viewBox={`0 0 ${radius * 2} ${radius * 2}`} className="absolute inset-0 w-full h-full">
                 <circle
                   stroke="#e5e7eb"
                   fill="transparent"
@@ -107,7 +107,7 @@ const ResultPage = () => {
                   strokeLinecap="round"
                 />
               </svg>
-              <span className="absolute inset-0 flex items-center justify-center text-xl font-bold text-indigo-700">{isNaN(percentage) ? '0%' : `${percentage}%`}</span>
+              <span className="absolute inset-0 flex items-center justify-center text-xl font-bold text-indigo-700 leading-none">{isNaN(percentage) ? '0%' : `${percentage}%`}</span>
             </div>
             <div className="text-xs text-gray-500 mt-1">Score</div>
           </div>
